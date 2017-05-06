@@ -4,7 +4,9 @@ from os import path, makedirs
 import urllib
 
 
-def download_ffmpeg():
+def download_ffmpeg(location):
+    location = path.expanduser(location)
+
     url = "https://github.com/kepoorhampond/ffmpeg-binaries/blob/master"
 
     platform_types = ["/linux/", "/win32/", "/darwin/"]
@@ -19,9 +21,9 @@ def download_ffmpeg():
             if type == "win32":
                 files = [x + ".exe" for x in files]
             for file in files:
-                filename = "bin/" + file
-                if not path.isdir("bin/"):
-                    makedirs("bin/")
+                filename = location + file
+                if not path.isdir(location):
+                    makedirs(location)
                 print('Downloading "%s":' % file)
                 urllib.urlretrieve(url + file + "?raw=true", filename,
                                    reporthook=dl_progress)

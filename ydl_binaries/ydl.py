@@ -8,8 +8,8 @@ import subprocess
 def check_ydl_version(location):
     if path.isdir(location):
         try:
-            local_version = subprocess.check_output(location + "youtube-dl \
---version".split(" ")).strip("\n")
+            local_version = subprocess.check_output((location + "youtube-dl \
+--version").split(" ")).strip("\n")
         except OSError:
             return True
 

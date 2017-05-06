@@ -5,8 +5,9 @@ import stat
 
 # Hook to display progress of downloads.
 def dl_progress(count, blocks, totalSize):
-    stdout.write("\r %3d%%  (%4d / %d pieces)" %
-                 (count * blocks * 100 / totalSize, count, totalSize / blocks))
+    stdout.write("\r %3d%%  (%4d / %d pieces)"
+                 % (count * blocks * 100 / totalSize, count,
+                    (totalSize / blocks) + 1))
     stdout.flush()
 
 
