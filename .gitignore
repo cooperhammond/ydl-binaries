@@ -1,7 +1,12 @@
-
 # To ignore all temporarily downloaded files for testing.
 bin/
 ffmpeg
 ffprobe
 youtube-dl
 .mp3
+
+# Ignore all build files
+*.pyc
+build/
+dist/
+*.egg-info
