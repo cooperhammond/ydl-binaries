@@ -1,0 +1,7 @@
+
+# To ignore all temporarily downloaded files for testing.
+bin/
+ffmpeg
+ffprobe
+youtube-dl
+.mp3
