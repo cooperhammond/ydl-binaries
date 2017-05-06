@@ -1,7 +1,10 @@
 from .utils import dl_progress, mark_executable
-from sys import platform
 from os import path, makedirs
-import urllib
+import sys
+if sys.version_info[0] >= 3:
+    from urllib.request import urlretrieve
+else:
+    from urllib import urlretrieve
 
 
 def download_ffmpeg(location):
@@ -12,7 +15,7 @@ def download_ffmpeg(location):
     platform_types = ["/linux/", "/win32/", "/darwin/"]
 
     for type in platform_types:
-        if platform.startswith(type.replace("/", "")):
+        if sys.platform.startswith(type.replace("/", "")):
             url += type
             files = [
                 "ffmpeg",
@@ -25,7 +28,7 @@ def download_ffmpeg(location):
                 if not path.isdir(location):
                     makedirs(location)
                 print('Downloading "%s":' % file)
-                urllib.urlretrieve(url + file + "?raw=true", filename,
+                urlretrieve(url + file + "?raw=true", filename,
                                    reporthook=dl_progress)
                 print("")
                 if type != "/win32/":

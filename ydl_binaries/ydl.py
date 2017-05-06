@@ -1,8 +1,11 @@
-from sys import platform
 from .utils import dl_progress, mark_executable
 from os import path, makedirs
-import urllib
 import subprocess
+import sys
+if sys.version_info[0] >= 3:
+    from urllib.request import urlretrieve, urlopen
+else:
+    from urllib import urlretrieve, urlopen
 
 
 def check_ydl_version(location):
@@ -13,7 +16,7 @@ def check_ydl_version(location):
         except OSError:
             return True
 
-        remote_version = urllib.urlopen("https://youtube-dl.org/").read()
+        remote_version = urlopen("https://youtube-dl.org/").read()
         remote_version = remote_version.rsplit('<a href="latest">\
 Latest</a> (v', 1)[1][:10]
         if local_version == remote_version:
@@ -24,7 +27,7 @@ Latest</a> (v', 1)[1][:10]
 def update_ydl(location):
     location = path.expanduser(location)
     if check_ydl_version(location):
-        windows = (platform == "win32")
+        windows = (sys.platform == "win32")
 
         if not windows:
             url = ["https://yt-dl.org/downloads/latest", "youtube-dl"]
@@ -36,7 +39,7 @@ def update_ydl(location):
             makedirs(location)
 
         print('Downloading "youtube-dl":')
-        urllib.urlretrieve("/".join(url), filename, reporthook=dl_progress)
+        urlretrieve("/".join(url), filename, reporthook=dl_progress)
 
         if not windows:
             mark_executable(filename)

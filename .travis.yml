@@ -4,11 +4,9 @@ python:
   - "3.5"
   - "3.6"
 
-before_script:
-  - sudo aptitude -y -q install ffmpeg libavcodec-extra-53 lame libmp3lame0
-
 install:
   - python setup.py install
 
 script:
-  - ydl-binaries -yf -l "binaries/"
+  - ydl-binaries -yf -l binaries/
+  - binaries/youtube-dl --ffmpeg-location binaries/ -x --audio-format mp3 "https://www.youtube.com/watch?v=rY0WxgSXdEE"
