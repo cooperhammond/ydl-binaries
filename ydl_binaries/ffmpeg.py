@@ -28,14 +28,17 @@ def download_ffmpeg(location):
                 files = [x + ".exe" for x in files]
             for file in files:
                 filename = location + file
-                if not path.isdir(location):
-                    makedirs(location)
-                print('Downloading "%s":' % file)
-                urlretrieve(url + file + "?raw=true", filename,
-                            reporthook=dl_progress)
-                print("")
-                if type != "/win32/":
-                    mark_executable(filename)
+                if not path.isfile(filename):
+                    if not path.isdir(location):
+                        makedirs(location)
+                    print('Downloading "%s":' % file)
+                    urlretrieve(url + file + "?raw=true", filename,
+                                reporthook=dl_progress)
+                    print("")
+                    if type != "/win32/":
+                        mark_executable(filename)
+                else:
+                    print('"%s" is already downloaded!' % file)
 
 
 if __name__ == "__main__":
