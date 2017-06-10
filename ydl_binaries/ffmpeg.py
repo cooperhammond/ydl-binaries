@@ -29,9 +29,12 @@ def download_ffmpeg(location):
             for file in files:
                 filename = location + file
                 if not path.isfile(filename):
+
                     if not path.isdir(location):
                         makedirs(location)
+
                     print('Downloading "%s":' % file)
+
                     urlretrieve(url + file + "?raw=true", filename,
                                 reporthook=dl_progress)
                     print("")

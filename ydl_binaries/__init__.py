@@ -1,7 +1,7 @@
 import argparse
+from .utils import drop_root_privilege
 from .ffmpeg import download_ffmpeg
 from .ydl import update_ydl
-from .utils import drop_root_privilege
 
 drop_root_privilege()
 

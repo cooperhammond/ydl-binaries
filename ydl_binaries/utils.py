@@ -13,7 +13,14 @@ def dl_progress(count, blocks, totalSize):
 
 def drop_root_privilege():
     try:
-        os.setuid(int(os.environ['SUDO_UID']))
+        os.seteuid(int(os.environ['SUDO_UID']))
+    except Exception:
+        pass
+
+
+def return_root_privilege():
+    try:
+        os.seteuid(0)
     except Exception:
         pass
 

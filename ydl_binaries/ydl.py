@@ -46,6 +46,8 @@ def update_ydl(location):
 
         if not windows:
             mark_executable(filename)
+    else:
+        print('"youtube-dl" is already at the latest version!')
 
 
 if __name__ == "__main__":
