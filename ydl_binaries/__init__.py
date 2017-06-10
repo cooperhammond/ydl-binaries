@@ -1,4 +1,3 @@
-import sys
 import argparse
 from .ffmpeg import download_ffmpeg
 from .ydl import update_ydl

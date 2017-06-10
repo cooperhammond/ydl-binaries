@@ -8,6 +8,9 @@ else:
 
 
 def download_ffmpeg(location):
+    if not location.endswith("/"):
+        location += "/"
+
     location = path.expanduser(location)
 
     url = "https://github.com/kepoorhampond/ffmpeg-binaries/blob/master"
@@ -29,7 +32,7 @@ def download_ffmpeg(location):
                     makedirs(location)
                 print('Downloading "%s":' % file)
                 urlretrieve(url + file + "?raw=true", filename,
-                                   reporthook=dl_progress)
+                            reporthook=dl_progress)
                 print("")
                 if type != "/win32/":
                     mark_executable(filename)

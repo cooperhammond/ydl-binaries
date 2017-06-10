@@ -25,6 +25,9 @@ Latest</a> (v', 1)[1][:10]
 
 
 def update_ydl(location):
+    if not location.endswith("/"):
+        location += "/"
+
     location = path.expanduser(location)
     if check_ydl_version(location):
         windows = (sys.platform == "win32")
