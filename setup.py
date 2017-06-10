@@ -2,7 +2,7 @@ from setuptools import setup
 
 setup(
     name =         'ydl-binaries',
-    version =      '1.0.0',
+    version =      '1.0.1',
     description =  'A collection of scripts that will download and update \
 binaries for youtube-dl and ffmpeg.',
     url =          'https://github.com/kepoorhampond/XXX',
