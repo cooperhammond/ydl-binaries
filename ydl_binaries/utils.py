@@ -11,6 +11,13 @@ def dl_progress(count, blocks, totalSize):
     stdout.flush()
 
 
+def drop_root_privilege():
+    try:
+        os.setuid(int(os.environ['SUDO_UID']))
+    except Exception:
+        pass
+
+
 # Mark a file as an executable
 def mark_executable(filename):
     st = os.stat(filename)
