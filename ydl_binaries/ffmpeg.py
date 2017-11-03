@@ -2,9 +2,9 @@ from .utils import dl_progress, mark_executable
 from os import path, makedirs
 import sys
 if sys.version_info[0] >= 3:
-    from urllib.request import urlretrieve
+    from urllib.request import urlretrieve, URLopener
 else:
-    from urllib import urlretrieve
+    from urllib import urlretrieve, URLopener
 
 
 def download_ffmpeg(location):
@@ -35,10 +35,16 @@ def download_ffmpeg(location):
 
                     print('Downloading "%s":' % file)
 
-                    urlretrieve(url + file + "?raw=true", filename,
-                                reporthook=dl_progress)
+                    if type != "win32":
+                        urlretrieve(url + file + "?raw=true", filename,
+                                    reporthook=dl_progress)
+                    else:
+                        urllib.URLopener().retrieve(url + file + "?raw=true",
+                                                    filename)
+
+
                     print("")
-                    if type != "/win32/":
+                    if type != "win32":
                         mark_executable(filename)
                 else:
                     print('"%s" is already downloaded!' % file)
