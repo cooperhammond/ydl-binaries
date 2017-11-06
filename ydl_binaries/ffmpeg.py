@@ -2,9 +2,13 @@ from .utils import dl_progress, mark_executable
 from os import path, makedirs
 import sys
 if sys.version_info[0] >= 3:
-    from urllib.request import urlretrieve, URLopener
+    from urllib.request import urlretrieve, build_opener, Request
+    from urllib.request import HTTPCookieProcessor
+    from http.cookiejar import CookieJar
 else:
-    from urllib import urlretrieve, URLopener
+    from urllib import urlretrieve
+    from cookielib import CookieJar
+    from urllib2 import build_opener, Request, HTTPCookieProcessor
 
 
 def download_ffmpeg(location):
@@ -24,7 +28,7 @@ def download_ffmpeg(location):
                 "ffmpeg",
                 "ffprobe"
             ]
-            if type == "win32":
+            if type == "/win32/":
                 files = [x + ".exe" for x in files]
             for file in files:
                 filename = location + file
@@ -35,16 +39,19 @@ def download_ffmpeg(location):
 
                     print('Downloading "%s":' % file)
 
-                    if type != "win32":
+                    if type != "/win32/":
                         urlretrieve(url + file + "?raw=true", filename,
                                     reporthook=dl_progress)
                     else:
-                        urllib.URLopener().retrieve(url + file + "?raw=true",
-                                                    filename)
+                        opener = build_opener(HTTPCookieProcessor(CookieJar()))
+                        request = Request(url + file + "?raw=true")
+                        response = opener.open(request)
+                        print("(This may take a while, and since you're on Windows there's no progress bar)")
+                        open(filename, "wb").write(response.read())
 
 
                     print("")
-                    if type != "win32":
+                    if type != "/win32/":
                         mark_executable(filename)
                 else:
                     print('"%s" is already downloaded!' % file)
