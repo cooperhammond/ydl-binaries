@@ -9,6 +9,11 @@ else:
 
 
 def update_ydl(location):
+    if not location.endswith("/"):
+        location += "/"
+
+    location = path.expanduser(location)
+
     windows = (sys.platform == "win32")
 
     if not windows:
