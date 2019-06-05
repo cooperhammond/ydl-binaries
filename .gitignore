@@ -1,13 +1,15 @@
+/docs/
+/lib/
+/bin/
+/.shards/
+*.dwarf
+
+# Libraries don't need dependency lock
+# Dependencies will be locked in applications that use them
+/shard.lock
+
 # To ignore all temporarily downloaded files for testing.
-bin/
 ffmpeg
 ffprobe
 youtube-dl
 .mp3
-
-# Ignore all build files
-*.pyc
-build/
-dist/
-*.egg-info
-__pycache__/
