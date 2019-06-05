@@ -1,10 +1,32 @@
-# ydl-binaries
-[![Build Status](https://travis-ci.org/kepoorhampond/ydl-binaries.svg?branch=master)](https://travis-ci.org/kepoorhampond/ydl-binaries)
-> :sparkles: A python module that can download and update binaries for ffmpeg and youtube-dl.
+# ydl_binaries
 
-Created out of the frustration that ffmpeg causes and the complete lack of easy cross platform access for `youtube-dl` and `ffmpeg`.
+Downloads system-correct `ffmpeg`, `ffprobe`, and `youtube-dl` binaries.
 
-## Install
+## Installation
+
+1. Add the dependency to your `shard.yml`:
+
+   ```yaml
+   dependencies:
+     ydl_binaries:
+       github: cooperhammond/ydl_binaries
+   ```
+
+2. Run `shards install`
+
+## Usage
+
+```crystal
+require "ydl_binaries"
+
+YdlBinaries.download_ffmpeg("/usr/local/bin")
+YdlBinaries.download_youtube_dl("/usr/local/bin")
 ```
-$ pip install ydl-binaries
-```
+
+**`.download_ffmpeg(location : String)`**
+
+Queries the user for the system type and then downloads the correct `ffmpeg` and `ffprobe` binaries into the specified location/folder.
+
+**`.download_youtube_dl(location : String)`**
+
+Queries the user for the system type and then downloads the latest [`youtube-dl`](https://github.com/ytdl-org/youtube-dl) binary into the specified location/folder.
