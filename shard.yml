@@ -6,4 +6,8 @@ authors:
 
 crystal: 0.28.0
 
+targets:
+  ydl_binaries:
+    main: src/ydl_binaries.cr
+
 license: MIT
