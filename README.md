@@ -9,7 +9,7 @@ Downloads system-correct `ffmpeg`, `ffprobe`, and `youtube-dl` binaries.
    ```yaml
    dependencies:
      ydl_binaries:
-       github: cooperhammond/ydl_binaries
+       github: cooperhammond/ydl-binaries
    ```
 
 2. Run `shards install`
