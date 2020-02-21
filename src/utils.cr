@@ -25,6 +25,12 @@ module Utils
     end
   end
 
+  def check_directory(path : String)
+    if !File.directory?(path)
+      FileUtils.mkdir_p(path)
+    end
+  end
+
 
   def retrieve_file(url : String, filename : String)
     HTTP::Client.get(url) do |response|
@@ -33,7 +39,7 @@ module Utils
 
       # If there's a redirect, follow it.
       if response.status_code == 302 # Redirect code
-        __retrieve_file(response.headers["Location"], filename)
+        self.retrieve_file(response.headers["Location"], filename)
       end
     
     end

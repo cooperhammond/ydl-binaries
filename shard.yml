@@ -1,11 +1,11 @@
 name: ydl_binaries
-version: 1.0.0
+version: 1.1.0
 
 authors:
   - Cooper Hammond <kepoorh@gmail.com>
 
 targets:
   ydl_binaries:
-    main: src/binaries.cr
+    main: src/ydl_binaries.cr
 
 license: MIT

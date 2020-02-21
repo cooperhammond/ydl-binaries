@@ -5,7 +5,7 @@ def download_ffmpeg(location : String, sys : String)
 
   files = ["ffmpeg", "ffprobe"]
 
-  if SYS == "/win32/"
+  if sys == "/win32/"
     files[0] += ".exe"
     files[1] += ".exe"
   end
