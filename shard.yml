@@ -1,10 +1,8 @@
 name: ydl_binaries
-version: 0.1.0
+version: 1.0.0
 
 authors:
   - Cooper Hammond <kepoorh@gmail.com>
-
-crystal: 0.28.0
 
 targets:
   ydl_binaries:
