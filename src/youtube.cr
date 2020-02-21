@@ -1,9 +1,6 @@
 require "./utils"
 
-def download_youtube_dl(location : String)
-
-  sys = __get_system()
-
+def download_youtube_dl(location : String, sys : String)
   download_url = "https://youtube-dl.org/downloads/latest/"
   filename = "youtube-dl" 
 
@@ -13,6 +10,6 @@ def download_youtube_dl(location : String)
   filename = Path[location].join(filename).to_s
 
   puts "Downloading youtube-dl to #{filename} ..."
-  __retrieve_file(download_url, filename)
-  __mark_as_executable(filename)
+  Utils.retrieve_file(download_url, filename)
+  Utils.mark_as_executable(filename)
 end

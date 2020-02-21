@@ -1,9 +1,6 @@
 require "./utils"
 
-def download_ffmpeg(location : String)
-
-  sys = __get_system()
-
+def download_ffmpeg(location : String, sys : String)
   download_url = "https://raw.githubusercontent.com/cooperhammond/ffmpeg-binaries/master/" + sys
 
   files = ["ffmpeg", "ffprobe"]
@@ -19,8 +16,8 @@ def download_ffmpeg(location : String)
     filename = Path[location].join(files[i]).to_s
 
     puts "Downloading #{files[i]} to #{filename} ..."
-    __retrieve_file(url_to_download, filename)
-    __mark_as_executable(filename)
+    Utils.retrieve_file(url_to_download, filename)
+    Utils.mark_as_executable(filename)
 
     i += 1
   end
