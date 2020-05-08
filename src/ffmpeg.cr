@@ -1,7 +1,7 @@
 require "./utils"
 
 def download_ffmpeg(location : String, sys : String)
-  download_url = "https://raw.githubusercontent.com/cooperhammond/ffmpeg-binaries/master/" + sys
+  download_url = "https://github.com/cooperhammond/ffmpeg-binaries/raw/master/" + sys
 
   files = ["ffmpeg", "ffprobe"]
 
